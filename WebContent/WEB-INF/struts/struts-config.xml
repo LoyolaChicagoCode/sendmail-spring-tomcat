@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE struts-config PUBLIC
+  "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+  "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+  <form-beans>
+
+    <form-bean name="mailForm" type="org.apache.struts.validator.DynaValidatorForm">
+      <form-property type="java.lang.String" name="from"/>
+      <form-property type="java.lang.String" name="to"/>
+      <form-property type="java.lang.String" name="subject"/>
+      <form-property type="java.lang.String" name="message"/>
+    </form-bean>
+
+  </form-beans>
+
+  <action-mappings>
+
+    <action path="/send"
+       name="mailForm"
+       validate="true"
+       scope="request"
+       input="/WEB-INF/jsp/start.jspx">
+      <forward name="success" path="/WEB-INF/jsp/done.jspx"/>
+      <forward name="failure" path="/WEB-INF/jsp/done.jspx"/>
+    </action>
+
+    <action path="/restart" forward="/WEB-INF/jsp/start.jspx"/>
+  </action-mappings>
+
+  <!-- This setting allows Spring to manage all Struts actions -->
+  <controller>
+    <set-property property="processorClass"
+      value="org.springframework.web.struts.DelegatingRequestProcessor"/>
+  </controller>
+
+  <message-resources parameter="sendmail.ui.ApplicationResources" null="false" />
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property 
+      property="pathnames" 
+      value="/WEB-INF/struts/validator-rules.xml, /WEB-INF/struts/validation.xml"/>
+  </plug-in>
+  
+  <!-- This plugin loads a Spring context for the Struts action servlet  -->
+  <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn"/>  
+
+</struts-config>

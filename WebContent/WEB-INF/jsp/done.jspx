@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+  xmlns:c="/tld/jstl-c" 
+  xmlns:fmt="/tld/jstl-fmt" 
+  xmlns:html="/tld/struts-html" 
+  version="2.0">
+  <jsp:directive.page contentType="text/html"/>
+  <html:xhtml/>
+  <html:html locale="true">
+    <head>
+      <title>
+        <fmt:message key="global.title"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="done.title"/>
+      </title>
+      <html:base/>
+    </head>
+    <body>
+      <h1>
+        <fmt:message key="done.heading"/>
+      </h1>
+      <c:if test="${not (empty requestScope.messageKey)}">
+        <h3>
+	   	  <fmt:message key="${requestScope.messageKey}"/>
+   	    </h3>
+   	  </c:if>
+      <html:link action="/restart">
+        <fmt:message key="done.again"/>
+      </html:link>
+    </body>
+  </html:html>
+</jsp:root>

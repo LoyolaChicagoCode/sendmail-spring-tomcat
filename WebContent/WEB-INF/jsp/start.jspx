@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+  xmlns:c="/tld/jstl-c" 
+  xmlns:fmt="/tld/jstl-fmt" 
+  xmlns:html="/tld/struts-html" 
+  version="2.0">
+  <jsp:directive.page contentType="text/html"/>
+  <html:xhtml/>
+  <html:html locale="true">
+    <head>
+      <title>
+        <fmt:message key="global.title"/>
+        <jsp:text>
+        </jsp:text>
+        <fmt:message key="start.title"/>
+      </title>
+      <html:base/>
+    </head>
+    <body>
+      <h1>
+        <fmt:message key="start.heading"/>
+      </h1>
+      <html:form action="/send" focus="from">
+        <fmt:message key="start.from"/>
+        <jsp:text>: </jsp:text>
+        <html:text property="from" size="20" maxlength="20"/>
+		<br/>
+        <fmt:message key="start.to"/>
+        <jsp:text>: </jsp:text>
+        <html:text property="to" size="20" maxlength="20"/>
+		<br/>
+        <fmt:message key="start.subject"/>
+        <jsp:text>: </jsp:text>
+        <html:text property="subject" size="40" maxlength="40"/>
+		<br/>
+        <fmt:message key="start.message"/>
+        <jsp:text>: </jsp:text>
+        <html:textarea property="message" rows="5" cols="40"/>
+		<br/>
+        <jsp:text>
+        </jsp:text>
+        <html:submit>
+          <fmt:message key="start.submit"/>
+        </html:submit>
+      </html:form>
+    </body>
+  </html:html>
+</jsp:root>
